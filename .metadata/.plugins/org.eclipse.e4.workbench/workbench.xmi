@@ -700,7 +700,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_i2zb4t5hEeaHHa9hx1JGIg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_iZl90MRsEeiSQK3d8BYuGw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_hg41Tt5hEeaHHa9hx1JGIg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_trkrkMRwEeiSAYe-zdkHrg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_hg41Tt5hEeaHHa9hx1JGIg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_lJpH0O7hEearhbHhWvZa2A" elementId="com.python.pydev.debug.actionSet" visible="false">
         <tags>Draggable</tags>
@@ -726,7 +726,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_i2zb595hEeaHHa9hx1JGIg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_iZnzAcRsEeiSQK3d8BYuGw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_hhCkt95hEeaHHa9hx1JGIg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_trmgw8RwEeiSAYe-zdkHrg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_hhCkt95hEeaHHa9hx1JGIg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ikPHkMRsEeiSQK3d8BYuGw" elementId="org.eclipse.jdt.ui.CompilationUnitEditor" visible="false">
         <tags>Draggable</tags>
@@ -4507,7 +4507,7 @@
   </addons>
   <addons xmi:id="_hgcF9N5hEeaHHa9hx1JGIg" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_hgl24N5hEeaHHa9hx1JGIg" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_iLWGccRsEeiSQK3d8BYuGw" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_tW5cEMRwEeiSAYe-zdkHrg" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="_hg4x0N5hEeaHHa9hx1JGIg" elementId="org.eclipse.ui.category.edit" name="Edit"/>
   <categories xmi:id="_hg4x0d5hEeaHHa9hx1JGIg" elementId="org.eclipse.papyrus.infra.nattable.rows.command.category" name="NatTable Rows Catgerory" description="This category is used for all rows commands"/>
