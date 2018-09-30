@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;lab8.LineNumber.java&apos; to &apos;LineNumberer.java&apos;&#x0D;&#x0A;- Original project: &apos;project8&apos;&#x0D;&#x0A;- Original element: &apos;lab8.LineNumber.java&apos;&#x0D;&#x0A;- Renamed element: &apos;lab8.LineNumberer.java&apos;" description="Rename compilation unit &apos;LineNumber.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;lab8{LineNumber.java" name="LineNumberer.java" references="false" stamp="1490118295401" version="1.0"/>
+</session>

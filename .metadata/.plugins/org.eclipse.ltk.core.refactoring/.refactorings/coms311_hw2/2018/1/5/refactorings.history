@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;coms311_hw2&apos;&#x0D;&#x0A;- Original project: &apos;coms311_hw2&apos;&#x0D;&#x0A;- Original element: &apos;cmp_sorters.AbstractSorter.java&apos;" description="Delete element" element1="/src&lt;cmp_sorters{AbstractSorter.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1517242598553" subPackages="false" version="1.0"/>
+</session>

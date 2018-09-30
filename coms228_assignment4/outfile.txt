@@ -1,0 +1,184 @@
+Notes on the output format of an entry tree: 
+A node with Character o (key) and String Larry (value) is shown in the form: o->Larry
+A child node is shown with right indentation below its parent node.
+The children of a node are shown at the same level of indentation.
+
+Command: add  edit   change
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->change
+
+Command: add  edit   revise  
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+
+Command: add  edited  revised
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+
+Command: add  edict  order
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+            c->null
+              t->order
+
+Command: add  editor writer
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+              o->null
+                r->writer
+            c->null
+              t->order
+
+Command: add  edition version
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+              o->null
+                r->writer
+              i->null
+                o->null
+                  n->version
+            c->null
+              t->order
+
+Command: add  editorial opinion
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+              o->null
+                r->writer
+                  i->null
+                    a->null
+                      l->opinion
+              i->null
+                o->null
+                  n->version
+            c->null
+              t->order
+
+Command: add  edge   sharpness
+Result from an add: true
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+              o->null
+                r->writer
+                  i->null
+                    a->null
+                      l->opinion
+              i->null
+                o->null
+                  n->version
+            c->null
+              t->order
+          g->null
+            e->sharpness
+
+Command: search  edge
+Result from a search: sharpness
+
+Command: prefix  editorialized
+Result from a prefix: editorial
+
+Command: add  editorially shorterkey
+Result from an add: true
+
+Command: remove  editor
+Result from a remove: writer
+
+Command: showTree
+
+Result from a showTree: 
+null->null
+      e->null
+        d->null
+          i->null
+            t->revise  
+              e->null
+                d->revised
+              o->null
+                r->null
+                  i->null
+                    a->null
+                      l->opinion
+                        l->null
+                          y->shorterkey
+              i->null
+                o->null
+                  n->version
+            c->null
+              t->order
+          g->null
+            e->sharpness

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="Integer.toString" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="Double.toString"/>
+			<item value="Double.parseDouble"/>
+			<item value="&lt;p&gt;"/>
+			<item value="getEle"/>
+			<item value="get"/>
+			<item value="pop"/>
+			<item value="package edu.iastate.cs228.hw4;"/>
+			<item value="add"/>
+			<item value="remove("/>
+			<item value="54"/>
+			<item value="55"/>
+			<item value="ln"/>
+			<item value="removeAll"/>
+			<item value="iterator"/>
+			<item value="set"/>
+		</list>
+		<list key="replacehistory">
+			<item value="Integer.toString"/>
+			<item value="Integer.parseInt"/>
+			<item value="55"/>
+			<item value="54"/>
+			<item value="cards"/>
+			<item value=""/>
+			<item value="yardsToGoalLine"/>
+			<item value="score1"/>
+			<item value="ballPos"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="284" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="374" key="DIALOG_HEIGHT"/>
+		<item value="683" key="DIALOG_X_ORIGIN"/>
+		<item value="178" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
