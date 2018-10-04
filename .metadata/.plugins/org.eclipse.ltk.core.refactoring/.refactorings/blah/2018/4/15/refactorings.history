@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename compilation unit &apos;blah.AdjacencyList.java&apos; to &apos;GFG.java&apos;&#x0D;&#x0A;- Original project: &apos;blah&apos;&#x0D;&#x0A;- Original element: &apos;blah.AdjacencyList.java&apos;&#x0D;&#x0A;- Renamed element: &apos;blah.GFG.java&apos;" description="Rename compilation unit &apos;AdjacencyList.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;blah{AdjacencyList.java" name="GFG.java" references="false" stamp="1523584113709" version="1.0"/>
-</session>
