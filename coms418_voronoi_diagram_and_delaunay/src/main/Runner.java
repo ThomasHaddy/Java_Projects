@@ -1,42 +1,22 @@
 package main;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import java.util.LinkedList;
 
-import io.Importer;
 import util.Point;
+import util.Sites;
+import util.Sites.Importer;
 
 public class Runner {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws FileNotFoundException {
 
 		System.out.println("Running App...");
+
+		Sites sites = new Sites(new LinkedList<Point>());
+		Importer.printInputFile(args[0]);
+		Importer.parseInputFile(sites, args[0]);
 		
-		File file = new File(args[0]);   
-		Scanner scanner = new Scanner(file);
-		List<Integer> integers = new ArrayList<>();
-		while (scanner.hasNext()) {
-		    if (scanner.hasNextInt()) {
-		        integers.add(scanner.nextInt());
-		    } 
-		    else {
-		        scanner.next();
-		    }
-		}
-		System.out.println(integers);
-		
-		//System.out.println(ints.size());
-		
-		//parser.parseInputFile(input);
-		//parser.printInputFile(input);
-		
+		System.out.println(sites.toString());
 	}
 }
