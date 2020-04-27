@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Sites {
 	
@@ -65,6 +64,10 @@ public class Sites {
 	
 	public void add(Point p) {
 		sites.add(p);
+	}
+	
+	public Point remove(int index) {
+		return sites.remove(index);
 	}
 	
 	public LinkedList<Point> sortPoints() {

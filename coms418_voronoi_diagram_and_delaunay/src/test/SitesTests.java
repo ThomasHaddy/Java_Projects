@@ -36,6 +36,34 @@ class SitesTests {
 	}
 	
 	/*
+	 * Adding Point to Sites test
+	 */
+	@Test
+	void addTest() {
+		LinkedList<Point> points = new LinkedList<>();
+		points.add(new Point(0,0));
+		points.add(new Point(1,1));
+		Sites sites = new Sites(points);
+		sites.add(new Point(2,2));
+		
+		assertEquals(new Point(2,2), sites.get(2));
+	}
+	
+	/*
+	 * Removing Point from Sites test
+	 */
+	@Test
+	void removeTest() {
+		LinkedList<Point> points = new LinkedList<>();
+		points.add(new Point(0,0));
+		points.add(new Point(1,1));
+		Sites sites = new Sites(points);
+		Point toRemove = sites.remove(1);
+		
+		assertEquals(new Point(1,1), toRemove);
+	}
+	
+	/*
 	 * Sorting test
 	 */
 	@Test
