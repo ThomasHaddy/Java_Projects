@@ -1,11 +1,14 @@
-package util;
+package data_structures;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+
+import geo.Point;
 
 public class Sites {
 	
@@ -47,7 +50,7 @@ public class Sites {
 		
 	} //End Importer
 
-	private LinkedList<Point> sites;
+	private List<Point> sites;
 	
 	public Sites(LinkedList<Point> sites) {
 		
@@ -55,7 +58,7 @@ public class Sites {
 	}
 	
 	public LinkedList<Point> getAllSites() {
-		return sites;
+		return (LinkedList<Point>) sites;
 	}
 	
 	public Point get(int index) {

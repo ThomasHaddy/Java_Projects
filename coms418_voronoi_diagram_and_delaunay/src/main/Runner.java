@@ -3,9 +3,9 @@ package main;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
-import util.Point;
-import util.Sites;
-import util.Sites.Importer;
+import data_structures.Sites;
+import data_structures.Sites.Importer;
+import geo.Point;
 
 public class Runner {
 

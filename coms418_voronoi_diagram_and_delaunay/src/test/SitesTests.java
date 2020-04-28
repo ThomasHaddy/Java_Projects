@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
-import util.Point;
-import util.Sites;
-import util.Sites.Importer;
-
 import org.junit.jupiter.api.Test;
+
+import data_structures.Sites;
+import data_structures.Sites.Importer;
+import geo.Point;
 
 class SitesTests {
 

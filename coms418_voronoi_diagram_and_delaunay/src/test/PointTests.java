@@ -1,9 +1,10 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import util.Point;
 
 import org.junit.jupiter.api.Test;
+
+import geo.Point;
 
 class PointTests {
 

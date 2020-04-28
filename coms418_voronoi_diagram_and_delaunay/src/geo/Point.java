@@ -1,4 +1,4 @@
-package util;
+package geo;
 
 public class Point implements Comparable<Point>{
 
