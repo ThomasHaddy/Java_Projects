@@ -13,44 +13,43 @@ import geo.Vertex;
 class DCELTests {
 	
 	/*
-	 * Constructor 1 test. Testing the spec's given DCEL (A triangle)
+	 * Testing iterating through the HalfEdge list
 	 */
 	@Test
-	void constructTest1() {
+	void halfEdgeTest() {
 		
-		//Initializing DCEL
-		Vertex v1 = new Vertex("v1", new Point(0,0), null);
-		Vertex v2 = new Vertex("v2", new Point(1,0), null);
-		Vertex v3 = new Vertex("v3", new Point(0,1), null);
+		//Initializing
+		Vertex v1 = new Vertex(new Point(0,0));
+		Vertex v2 = new Vertex(new Point(1,0));
+		Vertex v3 = new Vertex(new Point(0,1));
+
+		HalfEdge e12 = new HalfEdge(v1,v2);
+		HalfEdge e21 = new HalfEdge(v2,v1);
+		HalfEdge e23 = new HalfEdge(v2,v3);
+		HalfEdge e32 = new HalfEdge(v3,v2);
+		HalfEdge e31 = new HalfEdge(v3,v1);
+		HalfEdge e13 = new HalfEdge(v1,v3);
+
+		Face f1 = new Face(null, null);
+		Face f2 = new Face(null, null);
+
+		//Setting dependencies
+		v1.setIncidentEdge(e12);
+		v2.setIncidentEdge(e23);
+		v3.setIncidentEdge(e31);
 		
-		HalfEdge e1 = new HalfEdge(v1,v2);
-		HalfEdge e2 = new HalfEdge(v2,v3);
-		HalfEdge e3 = new HalfEdge(v3,v1);
-		
-		Face f1 = new Face("f1", e2, null);
-		Face f2 = new Face("f2", null, e1.getTwin());
-		
-		//Setting DCEL incidents and dependencies
-		v1 = new Vertex(v1.getName(), v1.getPoint(), e1);
-		v2 = new Vertex(v2.getName(), v2.getPoint(), e2);
-		v3 = new Vertex(v3.getName(), v3.getPoint(), e3);
-		
-		e1 = new HalfEdge(v1, e1.getTwin(), f1, e2, e3);
-		e2 = new HalfEdge(v2, e2.getTwin(), f1, e3, e1);
-		e3 = new HalfEdge(v3, e3.getTwin(), f1, e1, e2);
-		
-		e1.getTwin().setIncidentFace(f2);
-		e2.getTwin().setIncidentFace(f2);
-		e3.getTwin().setIncidentFace(f2);
 		
 		DCEL dcel = new DCEL();
 		dcel.addVertex(v1);
 		dcel.addVertex(v2);
 		dcel.addVertex(v3);
 		
-		dcel.addHalfEdge(e1);
-		dcel.addHalfEdge(e2);
-		dcel.addHalfEdge(e3);
+		dcel.addHalfEdge(e12);
+		dcel.addHalfEdge(e21);
+		dcel.addHalfEdge(e23);
+		dcel.addHalfEdge(e32);
+		dcel.addHalfEdge(e31);
+		dcel.addHalfEdge(e13);
 		
 		dcel.addFace(f1);
 		dcel.addFace(f2);

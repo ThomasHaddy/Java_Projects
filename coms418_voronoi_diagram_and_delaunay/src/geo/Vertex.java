@@ -1,13 +1,25 @@
 package geo;
 
+/**
+ * DCEL representation of a Vertex. A Vertex includes a Point p, and Incident Edge e.
+ * A Vertex must have a unique name and a Point p.
+ * @author Thomas Haddy
+ *
+ */
 public class Vertex {
 
-	private String name;
 	private Point p;
+
 	private HalfEdge incidentEdge;
 
-	public Vertex(String name, Point p, HalfEdge incidentEdge) {
-		this.name = name;
+	public Vertex() {}
+	
+	public Vertex(Point p) {
+		this.p = p;
+		this.incidentEdge = null;
+	}
+
+	public Vertex(Point p, HalfEdge incidentEdge) {
 		this.p = p;
 		this.incidentEdge = incidentEdge;
 	}
@@ -16,23 +28,24 @@ public class Vertex {
 		return p;
 	}
 
+	public void setPoint(Point p) {
+		this.p = p;
+	}
+
 	public HalfEdge getIncidentEdge() {
 		return incidentEdge;
 	}
-	
+
 	public void setIncidentEdge(HalfEdge e) {
 		this.incidentEdge = e;
 	}
 
-	public String getName() {
-		return name;
+	public double getX() {
+		return p.getX();
 	}
 
-	@Override
-	public String toString() {
-		if (incidentEdge == null)
-			return name + " " + p.toString() + " nil";
-		return name + " " + p.toString() + " " + incidentEdge.toString();
+	public double getY() {
+		return p.getY();
 	}
 
 }

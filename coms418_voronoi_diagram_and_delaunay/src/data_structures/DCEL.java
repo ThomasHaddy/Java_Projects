@@ -2,39 +2,39 @@ package data_structures;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.ListIterator;
+
 import geo.Vertex;
 import geo.HalfEdge;
 import geo.Face;
 
 public class DCEL {
-
-	public static class Exporter {
-		
-	}
 	
-	private List<Vertex> vertices;
+	private LinkedList<Vertex> vertices;
 	
-	private List<HalfEdge> halfEdges;
+	private LinkedList<HalfEdge> halfEdges;
 	
-	private List<Face> faces;
+	private LinkedList<Face> faces;
 	
 	public DCEL () {
 		vertices = new LinkedList<Vertex>();
 		halfEdges = new LinkedList<HalfEdge>();
 		faces = new LinkedList<Face>();
+		
+		//Add in unbounding face uf
+		faces.add(new Face(null,null));
 	}
 	
 	public LinkedList<Vertex> getVertices() {
-		return (LinkedList<Vertex>) vertices;
+		return vertices;
 	}
 	
 	public LinkedList<HalfEdge> getHalfEdges() {
-		return (LinkedList<HalfEdge>) halfEdges;
+		return halfEdges;
 	}
 	
 	public LinkedList<Face> getFaces() {
-		return (LinkedList<Face>) faces;
+		return faces;
 	}
 	
 	public void addVertex(Vertex v) {
@@ -49,62 +49,9 @@ public class DCEL {
 		faces.add(f);
 	}
 	
-	public Vertex removeVertex(Vertex v) {
-		
-		if (vertices.isEmpty())
-			return null;
-		
-		Vertex toRemove = null;
-		int index = 0;
-		for (Vertex vi : vertices) {
-			
-			if (vi.getName().equals(v.getName())) {
-				toRemove = vi;
-				vertices.remove(index);
-			}
-			index++;
-		}
-		return toRemove;
-	}
-	
-	public HalfEdge removeHalfEdge(HalfEdge e) {
-		
-		if (halfEdges.isEmpty())
-			return null;
-		
-		HalfEdge toRemove = null;
-		int index = 0;
-		for (HalfEdge ei : halfEdges) {
-			
-			if (ei.toString().equals(e.toString())) {
-				toRemove = ei;
-				halfEdges.remove(index);
-			}
-			index++;
-		}
-		return toRemove;
-	}
-	
-	public Face removeFace(Face f) {
-		
-		if (faces.isEmpty())
-			return null;
-		
-		Face toRemove = null;
-		int index = 0;
-		for (Face fi : faces) {
-			
-			if (fi.getName().equals(f.getName())) {
-				toRemove = fi;
-				faces.remove(index);
-			}
-			index++;
-		}
-		return toRemove;
-	}
-	
-	public Iterator<Vertex> getVertexIterator() {
-		return vertices.iterator();
+	public ListIterator<Vertex> getVertexIterator(int index) {
+		//return vertices.ListIterator<Vertex>(index);
+		return null;
 	}
 	
 	public Iterator<HalfEdge> getHalfEdgeIterator() {
@@ -115,39 +62,95 @@ public class DCEL {
 		return faces.iterator();
 	}
 	
+	public String getVertexName(int index) {
+		int in = index+1;
+		return "v" + in;
+	}
+	
+	public String getFaceName(int index) {
+		
+		//Unbounded face will always be the first index
+		if (index == 0) {
+			return "uf";
+		}
+		int in = index + 1;
+		return "f" + in;
+		
+	}
+	
+	public String getHalfEdgeName(int index) {
+		
+		Vertex origin = vertices.get(index).getIncidentEdge().getOrigin();
+		Vertex to = vertices.get(index).getIncidentEdge().getTwin().getOrigin();
+		
+		int edgeIndex = 0, originIndex = 0, toIndex = 0;
+		for (Vertex v : vertices) {
+			if (v.getPoint().equals(origin.getPoint()))
+				originIndex = edgeIndex;
+			else if (v.getPoint().equals(to.getPoint()))
+				toIndex = edgeIndex;
+			edgeIndex++;
+		}
+		return "e" + originIndex + "," + toIndex;
+	}
+	
 	@Override
 	public String toString() {
 		
-		String rep = "";
+		StringBuilder dcelStr = new StringBuilder();
 		
-		for (Vertex v : vertices) {
-			rep += v.toString() + "\n";
+		//Get the vertices
+		int vertexIndex = 0;
+		if (!vertices.isEmpty()) {
+			Vertex v = vertices.getFirst();
+			while (vertexIndex < vertices.size()) {
+				dcelStr
+				.append(getVertexName(vertexIndex))
+				.append("  (" + v.getX() + ", " + v.getY() + ")");
+				
+				if (v.getIncidentEdge() != null) {
+					dcelStr
+					.append(getHalfEdgeName(vertexIndex));
+				}
+				else {
+					dcelStr
+					.append("  nil");
+				}
+				
+				v = vertices.get(vertexIndex);
+				vertexIndex++;
+				dcelStr.append("\n");
+				
+			}
+			dcelStr.append("\n");
 		}
-		rep += "\n";
 		
-		for (Face f : faces) {
-			rep += f.toString() + "\n";
+		//Get the faces
+		int faceIndex = 0;
+		if (!faces.isEmpty()) {
+			Face f = faces.getFirst();
+			while (faceIndex < faces.size()) {
+				dcelStr
+				.append(getFaceName(faceIndex));
+				//Check if inner component is null
+				if (f.getInnerComp() == null) {
+					dcelStr
+					.append("  nil");
+				}
+				//inner component is not null. Find it
+				else {
+					//TODO: Get HalfEdge
+				}
+				f = faces.get(faceIndex);
+				faceIndex++;
+				dcelStr.append("\n");
+			}
 		}
-		rep += "\n";
+		dcelStr.append("\n");
 		
-		for (HalfEdge e : halfEdges) {
-			rep += 	e.toString() + " "
-					+ e.getOrigin().getName() + " "
-					+ e.getTwin().getName() + " "
-					+ e.getIncidentFace().getName() + " "
-					+ e.getNext().getName() + " "
-					+ e.getPrev().getName() + "\n";
-			
-			rep += e.getTwin().toString() + " "
-					+ e.getOrigin().getName() + " "
-					+ e.getTwin().getName() + " "
-					+ e.getIncidentFace().getName() + " "
-					+ e.getNext().getName() + " "
-					+ e.getPrev().getName() + "\n";
-		}
-		rep += "\n";
+		//Get the half edges
 		
-		return rep;
+		return dcelStr.toString();
 	}
 	
 }

@@ -1,25 +1,24 @@
 package geo;
 
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * DCEL representation of a face. A face has a bounded Half Edge inner component and bounded Half Edge outer component.
+ * @author Thomas
+ *
+ */
 public class Face {
 	
 	private HalfEdge innerComp;
     
 	private HalfEdge outerComp;
-	
-	private String name;
 
-    public Face(String name, HalfEdge innerComp, HalfEdge outerComp) {
-        this.name = name;
+	public Face() {}
+	
+    public Face(HalfEdge innerComp, HalfEdge outerComp) {
     	this.innerComp = innerComp;
         this.outerComp = outerComp;
-    }
-    
-    public String getName() {
-    	return this.name;
-    }
-    
-    public void setName(String name) {
-    	this.name = name;
     }
 
     public HalfEdge getInnerComp() {
@@ -38,13 +37,28 @@ public class Face {
         this.outerComp = e;
     }
     
+	public List<HalfEdge> getHalfEdges() {
+	        
+		List<HalfEdge> halfEdges = new LinkedList<>();
+		HalfEdge e = this.innerComp == null ? this.innerComp : this.outerComp;
+		halfEdges.add(e);
+		
+		if (e != null) {
+			while (e.getNext() != this.innerComp || e.getNext() != this.outerComp) {
+				e = e.getNext();
+				halfEdges.add(e);
+			}
+		}
+		return halfEdges;
+	}
+    
     @Override
     public String toString() {
     	if (this.innerComp == null && this.outerComp != null)
-    		return this.name + " nil " + this.outerComp.toString();
+    		return this + " nil " + this.outerComp.toString();
     	else if (this.outerComp == null && this.innerComp != null) {
-    		return this.name + " " + this.innerComp.toString() + " nil";
+    		return this + " " + this.innerComp.toString() + " nil";
     	}
-    	return this.getName() + " nil nil";
+    	return this + " nil nil";
     }
 }

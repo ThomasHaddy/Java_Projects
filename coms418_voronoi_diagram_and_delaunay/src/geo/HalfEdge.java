@@ -1,7 +1,15 @@
 package geo;
 
+/**
+ * DCEL representation of a Half Edge. A Half Edge has a name given from its origin Vertex and Origin(Twin e).
+ * Besides its name, a Half Edge e has an origin vertex, Half Edge twin, an Incident Face f, and a Pointer to the next and prev Half Edge.
+ * To initialize a Half Edge, there must be at least a given Origin vertex. 
+ * You can set its dependencies later once the faces and vertices have been created.
+ * @author Thomas Haddy
+ *
+ */
 public class HalfEdge {
-
+	
 	private Vertex origin;
 
 	private HalfEdge twin;
@@ -12,6 +20,8 @@ public class HalfEdge {
 
 	private HalfEdge prev;
 
+	public HalfEdge() {}
+	
 	public HalfEdge(Vertex origin, HalfEdge twin, Face incidentFace, HalfEdge next, HalfEdge prev) {
 
 		this.origin = origin;
@@ -21,17 +31,13 @@ public class HalfEdge {
 		this.prev = prev;
 	}
 	
-	public HalfEdge(Vertex origin, Vertex next) {
+	public HalfEdge(Vertex origin, Vertex to) {
 
 		this.origin = origin;
-		this.twin = new HalfEdge(next, this, null, null, null);
+		this.twin = to.getIncidentEdge();
 		this.incidentFace = null;
-		this.next = null;
-		this.prev = null;
-	}
-
-	public String getName() {
-		return "e" + origin.getName().substring(1) + "," + twin.getOrigin().getName().substring(1);
+		this.next = this.twin.prev.twin;
+		this.prev = this.twin.next.twin;
 	}
 	
 	public Vertex getOrigin() {
@@ -69,10 +75,6 @@ public class HalfEdge {
 	public void setPrev(HalfEdge prev) {
 		this.prev = prev;
 	}
-
-	@Override
-	public String toString() {
-		return this.getName();
-	}
+	
 }
 

@@ -42,9 +42,27 @@ class PointTests {
 	 * String representation test
 	 */
 	@Test
-	void toStringTest() {
+	void toStringTest1() {
 		Point p = new Point(1,1);
 		assertEquals("(1, 1)", p.toString());
+	}
+	
+	/*
+	 * String representation test
+	 */
+	@Test
+	void toStringTest2() {
+		Point p = new Point(1.02,1.05);
+		assertEquals("(1.02, 1.05)", p.toString());
+	}
+	
+	/*
+	 * String representation test
+	 */
+	@Test
+	void toStringTest3() {
+		Point p = new Point(1.024555,1.05323234);
+		assertEquals("(1.02, 1.05)", p.toString());
 	}
 	
 	/*
