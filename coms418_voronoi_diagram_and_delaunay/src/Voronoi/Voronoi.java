@@ -22,21 +22,6 @@ public class Voronoi {
 		return sweepLoc;
 	}
 
-	public static void main(String[] args) {
-		if (args.length > 0) {
-			int N = Integer.parseInt(args[0]);
-			ArrayList<Point> sites = new ArrayList<Point>();
-			Random rnd = new Random();
-			for (int i = 0; i < N; i++) {
-				sites.add(new Point(rnd.nextDouble(), rnd.nextDouble()));
-			}
-			StdDraw.setCanvasSize(1024, 1024);
-			StdDraw.setScale(-.1, 1.1);
-			Voronoi v = new Voronoi(sites, true);
-			v.show();
-		}
-	}
-
 	public Voronoi(ArrayList<Point> sites) {
 		this(sites, false);
 	}
@@ -233,7 +218,7 @@ public class Voronoi {
 		}
 	}
 
-	private void show() {
+	public void show() {
 		StdDraw.clear();
 		for (Point p : sites) {
 			p.draw(StdDraw.RED);
@@ -247,7 +232,7 @@ public class Voronoi {
 		StdDraw.show();
 	}
 
-	private void draw() {
+	public void draw() {
 		StdDraw.clear();
 		for (Point p : sites) {
 			p.draw(StdDraw.RED);
