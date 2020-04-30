@@ -1,5 +1,6 @@
 package main;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 import Voronoi.*;
 import stdlib.StdDraw;
@@ -7,17 +8,39 @@ import stdlib.StdDraw;
 public class Runner {
 
 	public static void main(String[] args) {
-		if (args.length > 0) {
-			int N = Integer.parseInt(args[0]);
+		
+		//Args[0]: File - reads from sites.txt
+		//Args[1]: Path - path of input .txt
+		if (args[0].equals("File") && args.length == 2) {
+			ArrayList<Point> sites = new ArrayList<Point>();
+			try {
+				Importer.printInputFile(args[1]);
+				Importer.parseInputFile(sites, args[1]);
+			} catch (FileNotFoundException e) {
+				System.out.println("Did not find file in path" + args[1]);
+			}
+			sites = Importer.normalize(sites);
+			StdDraw.setCanvasSize(1024, 1024);
+			StdDraw.setScale(-1.1, 1.1);
+			Voronoi v = new Voronoi(sites, true);
+			v.show();
+		}
+		//Args[0]: Random - generates random points
+		//Args[1]: N - Number of sites
+		else if (args[0].equals("Random") && args.length == 2) {
+			int N = Integer.parseInt(args[1]);
 			ArrayList<Point> sites = new ArrayList<Point>();
 			Random rnd = new Random();
 			for (int i = 0; i < N; i++) {
 				sites.add(new Point(rnd.nextDouble(), rnd.nextDouble()));
 			}
 			StdDraw.setCanvasSize(1024, 1024);
-			StdDraw.setScale(-.1, 1.1);
+			StdDraw.setScale(-1.1, 1.1);
 			Voronoi v = new Voronoi(sites, true);
 			v.show();
+		}
+		else {
+			
 		}
 	}
 	

@@ -52,7 +52,7 @@ public class Sites {
 
 	private List<Point> sites;
 	
-	public Sites(LinkedList<Point> sites) {
+	public Sites(List<Point> sites) {
 		
 		this.sites = sites;
 	}
