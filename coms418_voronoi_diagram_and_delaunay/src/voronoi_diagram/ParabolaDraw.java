@@ -2,11 +2,15 @@ package voronoi_diagram;
 
 import stdlib.StdDraw;
 
-
-public class Parabola {
+/**
+ * 
+ * @author Thomas
+ *
+ */
+public class ParabolaDraw {
 	private final double a, b, c;
 
-	public Parabola(Point focus, double directrixY) {
+	public ParabolaDraw(Point focus, double directrixY) {
 		this.a = focus.getX();
 		this.b = focus.getY();
 		this.c = directrixY;

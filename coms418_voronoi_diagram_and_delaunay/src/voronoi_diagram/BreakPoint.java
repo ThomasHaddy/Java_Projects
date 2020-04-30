@@ -1,33 +1,51 @@
 package voronoi_diagram;
 
 import stdlib.StdDraw;
-
-import java.awt.*;
+import java.awt.Color;
 
 public class BreakPoint {
-	private final Voronoi v;
-	protected final Point s1, s2;
+	
+	private final Voronoi voronoi;
+	
+	private final Point left, right;
+	
 	private VoronoiEdge e;
+	
 	private boolean isEdgeLeft;
-	public final Point edgeBegin;
+	
+	private final Point edgeBegin;
 
 	private double cacheSweepLoc;
+	
 	private Point cachePoint;
 
-	public BreakPoint(Point left, Point right, VoronoiEdge e, boolean isEdgeLeft, Voronoi v) {
-		this.v = v;
-		this.s1 = left;
-		this.s2 = right;
+	public BreakPoint(Point left, Point right, VoronoiEdge e, boolean isEdgeLeft, Voronoi voronoi) {
+		
+		this.voronoi = voronoi;
+		this.left = left;
+		this.right = right;
 		this.e = e;
 		this.isEdgeLeft = isEdgeLeft;
 		this.edgeBegin = this.getPoint();
 	}
-
-	private static double sq(double d) {
-		return d * d;
+	
+	public Point getLeft() {
+		
+		return left;
+	}
+	
+	public Point getRight() {
+		
+		return right;
+	}
+	
+	public Point getEdgeBegin() {
+		
+		return edgeBegin;
 	}
 
 	public void draw() {
+		
 		Point p = this.getPoint();
 		p.draw(Color.BLUE);
 		StdDraw.setPenColor(Color.BLUE);
@@ -42,6 +60,7 @@ public class BreakPoint {
 	}
 
 	public void finish(Point vert) {
+		
 		if (isEdgeLeft) {
 			this.e.p1 = vert;
 		}
@@ -51,6 +70,7 @@ public class BreakPoint {
 	}
 
 	public void finish() {
+		
 		Point p = this.getPoint();
 		if (isEdgeLeft) {
 			this.e.p1 = p;
@@ -61,7 +81,8 @@ public class BreakPoint {
 	}
 
 	public Point getPoint() {
-		double l = v.getSweepLoc();
+		
+		double l = voronoi.getSweepLoc();
 		if (l == cacheSweepLoc) {
 			return cachePoint;
 		}
@@ -69,16 +90,16 @@ public class BreakPoint {
 
 		double x,y;
 		// Handle the vertical line case
-		if (s1.getY() == s2.getY()) {
-			x = (s1.getX() + s2.getX()) / 2; // x coordinate is between the two sites
+		if (left.getY() == right.getY()) {
+			x = (left.getX() + right.getX()) / 2; // x coordinate is between the two sites
 			// comes from parabola focus-directrix definition:
-			y = (sq(x - s1.getX()) + sq(s1.getY()) - sq(l)) / (2* (s1.getY() - l));
+			y = (Math.pow(x - left.getX(),2) + Math.pow(left.getY(),2) - Math.pow(l,2)) / (2* (left.getY() - l));
 		}
 		else {
 			// This method works by intersecting the line of the edge with the parabola of the higher point
 			// I'm not sure why I chose the higher point, either should work
-			double px = (s1.getY() > s2.getY()) ? s1.getX() : s2.getX();
-			double py = (s1.getY() > s2.getY()) ? s1.getY() : s2.getY();
+			double px = (left.getY() > right.getY()) ? left.getX() : right.getX();
+			double py = (left.getY() > right.getY()) ? left.getY() : right.getY();
 			double m = e.m;
 			double b = e.b;
 
@@ -87,9 +108,9 @@ public class BreakPoint {
 			// Straight up quadratic formula
 			double A = 1;
 			double B = -2*px - d*m;
-			double C = sq(px) + sq(py) - sq(l) - d*b;
-			int sign = (s1.getY() > s2.getY()) ? -1 : 1;
-			double det = sq(B) - 4 * A * C;
+			double C = Math.pow(px,2) + Math.pow(py,2) - Math.pow(l,2) - d*b;
+			int sign = (left.getY() > right.getY()) ? -1 : 1;
+			double det = Math.pow(B,2) - 4 * A * C;
 			// When rounding leads to a very very small negative determinant, fix it
 			if (det <= 0) {
 				x = -B / (2 * A);
@@ -103,11 +124,14 @@ public class BreakPoint {
 		return cachePoint;
 	}
 
-	public String toString() {
-		return String.format("%s \ts1: %s\ts2: %s", this.getPoint(), this.s1, this.s2);
-	}
-
 	public VoronoiEdge getEdge() {
+		
 		return this.e;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return String.format("%s \tleft: %s\tright: %s", this.getPoint(), this.left, this.right);
 	}
 }

@@ -3,17 +3,30 @@ package voronoi_diagram;
 import stdlib.StdDraw;
 
 public class CircleEvent extends Event {
-	public final Arc arc;
-	public final Point vert;
+	
+	private final Arc arc;
+	
+	private final Point vertex;
 
-	public CircleEvent(Arc a, Point p, Point vert) {
+	public CircleEvent(Arc a, Point p, Point vertex) {
 		super(p);
 		this.arc = a;
-		this.vert = vert;
+		this.vertex = vertex;
+	}
+	
+	public Arc getArc() {
+		
+		return arc;
+	}
+	
+	public Point getVertex() {
+		
+		return vertex;
 	}
 
 	public void draw() {
-		this.p.draw(StdDraw.GREEN);
-		StdDraw.circle(vert.getX(), vert.getY(), (vert.getY() - p.getY()));
+		
+		this.getPoint().draw(StdDraw.GREEN);
+		StdDraw.circle(vertex.getX(), vertex.getY(), (vertex.getY() - getPoint().getY()));
 	}
 }

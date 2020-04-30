@@ -1,16 +1,21 @@
 package voronoi_diagram;
 
 public class ArcQuery extends ArcKey {
+	
 	private final Point p;
+	
 	public ArcQuery(Point p) {
+		
 		this.p = p;
 	}
 
-	protected Point getLeft() {
+	protected Point getLeftPoint() {
+		
 		return p;
 	}
 
-	protected Point getRight() {
+	protected Point getRightPoint() {
+		
 		return p;
 	}
 }

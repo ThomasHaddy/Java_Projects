@@ -1,16 +1,16 @@
 package voronoi_diagram;
 
-
-
 public abstract class ArcKey implements Comparable<ArcKey> {
-	protected abstract Point getLeft();
-	protected abstract Point getRight();
+	
+	protected abstract Point getLeftPoint();
+	
+	protected abstract Point getRightPoint();
 
 	public int compareTo(ArcKey that) {
-		Point myLeft = this.getLeft();
-		Point myRight = this.getRight();
-		Point yourLeft = that.getLeft();
-		Point yourRight = that.getRight();
+		Point myLeft = this.getLeftPoint();
+		Point myRight = this.getRightPoint();
+		Point yourLeft = that.getLeftPoint();
+		Point yourRight = that.getRightPoint();
 
 		// If one arc contains the query then we'll say that they're the same
 		if (((that.getClass() == ArcQuery.class) || (this.getClass() == ArcQuery.class)) &&

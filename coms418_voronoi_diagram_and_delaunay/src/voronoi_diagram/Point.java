@@ -6,7 +6,6 @@ import stdlib.StdDraw;
 /**
  * A Point represents an ordered pair (x, y).
  * @author Thomas Haddy
- *
  */
 public class Point implements Comparable<Point> {
 	
