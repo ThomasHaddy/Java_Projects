@@ -1,4 +1,4 @@
-package Voronoi;
+package voronoi_diagram;
 
 public class ArcQuery extends ArcKey {
 	private final Point p;

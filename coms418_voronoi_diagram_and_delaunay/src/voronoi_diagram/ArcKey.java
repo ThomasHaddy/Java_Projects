@@ -1,4 +1,4 @@
-package Voronoi;
+package voronoi_diagram;
 
 
 
@@ -14,14 +14,14 @@ public abstract class ArcKey implements Comparable<ArcKey> {
 
 		// If one arc contains the query then we'll say that they're the same
 		if (((that.getClass() == ArcQuery.class) || (this.getClass() == ArcQuery.class)) &&
-				((myLeft.x <= yourLeft.x && myRight.x >= yourRight.x) ||
-						(yourLeft.x <= myLeft.x && yourRight.x >= myRight.x ))) {
+				((myLeft.getX() <= yourLeft.getX() && myRight.getX() >= yourRight.getX()) ||
+						(yourLeft.getX() <= myLeft.getX() && yourRight.getX() >= myRight.getX() ))) {
 			return 0;
 		}
 
-		if (myLeft.x == yourLeft.x && myRight.x == yourRight.x) return 0;
-		if (myLeft.x >= yourRight.x) return 1;
-		if (myRight.x <= yourLeft.x) return -1;
+		if (myLeft.getX() == yourLeft.getX() && myRight.getX() == yourRight.getX()) return 0;
+		if (myLeft.getX() >= yourRight.getX()) return 1;
+		if (myRight.getX() <= yourLeft.getX()) return -1;
 
 		return Point.midpoint(myLeft, myRight).compareTo(Point.midpoint(yourLeft, yourRight));
 	}

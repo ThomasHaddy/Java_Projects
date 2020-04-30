@@ -1,4 +1,4 @@
-package geo;
+package dcel;
 
 /**
  * DCEL representation of a Vertex. A Vertex includes a Point p, and Incident Edge e.

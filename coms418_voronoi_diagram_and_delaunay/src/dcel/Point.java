@@ -1,4 +1,4 @@
-package geo;
+package dcel;
 
 /**
  * Point has a double x coordinate and double y coordinate

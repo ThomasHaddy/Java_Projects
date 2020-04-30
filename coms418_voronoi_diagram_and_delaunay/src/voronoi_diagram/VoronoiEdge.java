@@ -1,4 +1,4 @@
-package Voronoi;
+package voronoi_diagram;
 
 
 public class VoronoiEdge {
@@ -10,12 +10,12 @@ public class VoronoiEdge {
 	public VoronoiEdge(Point site1, Point site2) {
 		this.site1 = site1;
 		this.site2 = site2;
-		isVertical = (site1.y == site2.y) ? true : false;
+		isVertical = (site1.getY() == site2.getY()) ? true : false;
 		if (isVertical) m = b = 0;
 		else {
-			m = -1.0 / ((site1.y - site2.y) / (site1.x - site2.x));
+			m = -1.0 / ((site1.getY() - site2.getY()) / (site1.getX() - site2.getX()));
 			Point midpoint = Point.midpoint(site1, site2);
-			b = midpoint.y - m*midpoint.x;
+			b = midpoint.getY() - m*midpoint.getX();
 		}
 	}
 
@@ -23,11 +23,11 @@ public class VoronoiEdge {
 		if (this.m == that.m && this.b != that.b && this.isVertical == that.isVertical) return null; // no intersection
 		double x, y;
 		if (this.isVertical) {
-			x = (this.site1.x + this.site2.x) / 2;
+			x = (this.site1.getX() + this.site2.getX()) / 2;
 			y = that.m*x + that.b;
 		}
 		else if (that.isVertical) {
-			x = (that.site1.x + that.site2.x) / 2;
+			x = (that.site1.getX() + that.site2.getX()) / 2;
 			y = this.m*x + this.b;
 		}
 		else {

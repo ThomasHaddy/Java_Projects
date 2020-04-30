@@ -1,12 +1,8 @@
-package data_structures;
+package dcel;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
-
-import geo.Vertex;
-import geo.HalfEdge;
-import geo.Face;
 
 public class DCEL {
 	

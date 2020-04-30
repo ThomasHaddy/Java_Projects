@@ -1,4 +1,4 @@
-package Voronoi;
+package voronoi_diagram;
 
 
 public class Event implements Comparable<Event> {
@@ -10,6 +10,6 @@ public class Event implements Comparable<Event> {
 
 	@Override
 	public int compareTo(Event o) {
-		return Point.minYOrderedCompareTo(this.p, o.p);
+		return Point.yCompareTo(this.p, o.p);
 	}
 }

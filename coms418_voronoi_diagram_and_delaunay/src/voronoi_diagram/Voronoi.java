@@ -1,4 +1,4 @@
-package Voronoi;
+package voronoi_diagram;
 
 import stdlib.StdDraw;
 
@@ -35,7 +35,7 @@ public class Voronoi {
 		arcs = new TreeMap<ArcKey, CircleEvent>();
 
 		for (Point site : sites) {
-			if ((site.x > MAX_DIM || site.x < MIN_DIM) || (site.y > MAX_DIM || site.y < MIN_DIM))
+			if ((site.getX() > MAX_DIM || site.getX() < MIN_DIM) || (site.getY() > MAX_DIM || site.getY() < MIN_DIM))
 				throw new RuntimeException(String.format(
 						"Invalid site in input, sites must be between %f and %f", MIN_DIM, MAX_DIM ));
 			events.add(new Event(site));
@@ -43,7 +43,7 @@ public class Voronoi {
 		sweepLoc = MAX_DIM;
 		do {
 			Event cur = events.pollFirst();
-			sweepLoc = cur.p.y;
+			sweepLoc = cur.p.getY();
 			if (animate) this.draw();
 			if (cur.getClass() == Event.class) {
 				handleSiteEvent(cur);
@@ -72,9 +72,9 @@ public class Voronoi {
 		Arc arcAbove = (Arc) arcEntryAbove.getKey();
 
 		// Deal with the degenerate case where the first two points are at the same y value
-		if (arcs.size() == 0 && arcAbove.site.y == cur.p.y) {
+		if (arcs.size() == 0 && arcAbove.site.getY() == cur.p.getY()) {
 			VoronoiEdge newEdge = new VoronoiEdge(arcAbove.site, cur.p);
-			newEdge.p1 = new Point((cur.p.x + arcAbove.site.x)/2, Double.POSITIVE_INFINITY);
+			newEdge.p1 = new Point((cur.p.getX() + arcAbove.site.getX())/2, Double.POSITIVE_INFINITY);
 			BreakPoint newBreak = new BreakPoint(arcAbove.site, cur.p, newEdge, false, this);
 			breakPoints.add(newBreak);
 			this.edgeList.add(newEdge);
@@ -187,7 +187,7 @@ public class Voronoi {
 		// If the edges being traces out by these two arcs take a right turn then we
 		// know
 		// that the vertex is going to be above the current point
-		boolean turnsLeft = Point.ccw(arcLeft.right.edgeBegin, ce.p, arcRight.left.edgeBegin) == 1;
+		boolean turnsLeft = Point.compareTurnDirection(arcLeft.right.edgeBegin, ce.p, arcRight.left.edgeBegin) == 1;
 		// So if it turns left, we know the next vertex will be below this vertex
 		// so if it's below and the slow is negative then this vertex is the left point
 		boolean isLeftPoint = (turnsLeft) ? (e.m < 0) : (e.m > 0);
@@ -210,8 +210,8 @@ public class Voronoi {
 	private void checkForCircleEvent(Arc a) {
 		Point circleCenter = a.checkCircle();
 		if (circleCenter != null) {
-			double radius = a.site.distanceTo(circleCenter);
-			Point circleEventPoint = new Point(circleCenter.x, circleCenter.y - radius);
+			double radius = a.site.distance(a.site, circleCenter);
+			Point circleEventPoint = new Point(circleCenter.getX(), circleCenter.getY() - radius);
 			CircleEvent ce = new CircleEvent(a, circleEventPoint, circleCenter);
 			arcs.put(a, ce);
 			events.add(ce);
@@ -225,8 +225,8 @@ public class Voronoi {
 		}
 		for (VoronoiEdge e : edgeList) {
 			if (e.p1 != null && e.p2 != null) {
-				double topY = (e.p1.y == Double.POSITIVE_INFINITY) ? MAX_DIM : e.p1.y; // HACK to draw from infinity
-				StdDraw.line(e.p1.x, topY, e.p2.x, e.p2.y);
+				double topY = (e.p1.getY() == Double.POSITIVE_INFINITY) ? MAX_DIM : e.p1.getY(); // HACK to draw from infinity
+				StdDraw.line(e.p1.getX(), topY, e.p2.getX(), e.p2.getY());
 			}
 		}
 		StdDraw.show();
@@ -245,8 +245,8 @@ public class Voronoi {
 		}
 		for (VoronoiEdge e : edgeList) {
 			if (e.p1 != null && e.p2 != null) {
-				double topY = (e.p1.y == Double.POSITIVE_INFINITY) ? MAX_DIM : e.p1.y; // HACK to draw from infinity
-				StdDraw.line(e.p1.x, topY, e.p2.x, e.p2.y);
+				double topY = (e.p1.getY() == Double.POSITIVE_INFINITY) ? MAX_DIM : e.p1.getY(); // HACK to draw from infinity
+				StdDraw.line(e.p1.getX(), topY, e.p2.getX(), e.p2.getY());
 			}
 		}
 		StdDraw.line(MIN_DIM, sweepLoc, MAX_DIM, sweepLoc);

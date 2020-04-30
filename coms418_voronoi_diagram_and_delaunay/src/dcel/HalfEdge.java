@@ -1,4 +1,4 @@
-package geo;
+package dcel;
 
 /**
  * DCEL representation of a Half Edge. A Half Edge has a name given from its origin Vertex and Origin(Twin e).

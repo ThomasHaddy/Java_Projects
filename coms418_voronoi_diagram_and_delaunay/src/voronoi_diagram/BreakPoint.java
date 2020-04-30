@@ -1,4 +1,4 @@
-package Voronoi;
+package voronoi_diagram;
 
 import stdlib.StdDraw;
 
@@ -31,13 +31,13 @@ public class BreakPoint {
 		Point p = this.getPoint();
 		p.draw(Color.BLUE);
 		StdDraw.setPenColor(Color.BLUE);
-		StdDraw.line(edgeBegin.x, edgeBegin.y, p.x, p.y);
+		StdDraw.line(edgeBegin.getX(), edgeBegin.getY(), p.getX(), p.getY());
 		StdDraw.setPenColor();
 		if (isEdgeLeft && e.p2 != null) {
-			StdDraw.line(edgeBegin.x, edgeBegin.y, e.p2.x, e.p2.y);
+			StdDraw.line(edgeBegin.getX(), edgeBegin.getY(), e.p2.getX(), e.p2.getY());
 		}
 		else if (!isEdgeLeft && e.p1 != null) {
-			StdDraw.line(edgeBegin.x, edgeBegin.y, e.p1.x, e.p1.y);
+			StdDraw.line(edgeBegin.getX(), edgeBegin.getY(), e.p1.getX(), e.p1.getY());
 		}
 	}
 
@@ -69,16 +69,16 @@ public class BreakPoint {
 
 		double x,y;
 		// Handle the vertical line case
-		if (s1.y == s2.y) {
-			x = (s1.x + s2.x) / 2; // x coordinate is between the two sites
+		if (s1.getY() == s2.getY()) {
+			x = (s1.getX() + s2.getX()) / 2; // x coordinate is between the two sites
 			// comes from parabola focus-directrix definition:
-			y = (sq(x - s1.x) + sq(s1.y) - sq(l)) / (2* (s1.y - l));
+			y = (sq(x - s1.getX()) + sq(s1.getY()) - sq(l)) / (2* (s1.getY() - l));
 		}
 		else {
 			// This method works by intersecting the line of the edge with the parabola of the higher point
 			// I'm not sure why I chose the higher point, either should work
-			double px = (s1.y > s2.y) ? s1.x : s2.x;
-			double py = (s1.y > s2.y) ? s1.y : s2.y;
+			double px = (s1.getY() > s2.getY()) ? s1.getX() : s2.getX();
+			double py = (s1.getY() > s2.getY()) ? s1.getY() : s2.getY();
 			double m = e.m;
 			double b = e.b;
 
@@ -88,7 +88,7 @@ public class BreakPoint {
 			double A = 1;
 			double B = -2*px - d*m;
 			double C = sq(px) + sq(py) - sq(l) - d*b;
-			int sign = (s1.y > s2.y) ? -1 : 1;
+			int sign = (s1.getY() > s2.getY()) ? -1 : 1;
 			double det = sq(B) - 4 * A * C;
 			// When rounding leads to a very very small negative determinant, fix it
 			if (det <= 0) {
